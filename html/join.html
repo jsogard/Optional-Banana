@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Join or Start a Game</title>
+</head>
+<body>
+
+<h4>Start Game</h4>
+<button ng-click="start_game()">Create Game!</button>
+<h2> {{lobby.code}} </h2>
+<button ng-click="close_lobby()">Close Lobby</button>
+
+<h4>Join Game</h4>
+Game Code: <input type="text" ng-focus="true" ng-model="join_code"><br>
+<button ng-click="join_game(join_code)">Join!</button>
+
+<table ng-if=" lobby.code !== '' ">
+	<tr>
+		<th colspan="2"> {{ lobby.code }} </th>
+	</tr>
+	<tr ng-repeat=" u in lobby.users ">
+		<td> {{ u }} </td>
+		<td> {{ $index+1 }} </td>
+	</tr>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>Optional Banana</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+</head>
+
+<body ng-app = "mainApp">
+	
+	<div ng-view></div>
+
+	<script type = "text/ng-template" id = "login.html">
+        <ng-include src="'./html/login.html'"></ng-include>
+    </script>
+
+    <script type = "text/ng-template" id = "join.html">
+        <ng-include src="'./html/join.html'"></ng-include>
+    </script>
+
+
+    <script src="./js/master.js"></script>
+	<script src="./js/login.js"></script>
+	<script src="./js/join.js"></script>
+
+</body>
+</html>

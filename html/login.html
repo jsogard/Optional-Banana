@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+
+<h4>Log In</h4>
+Username: <input type="text" ng-focus="true" ng-model="l_username"><br>
+Password: <input type="text" ng-model="l_password"><br>
+<button ng-click="login(l_username,l_password)">Log In</button>
+
+<h4>Sign Up</h4>
+Username: <input type="text" ng-model="s_username"><br>
+Password: <input type="text" ng-model="s_password"><br>
+Confirm Password: <input type="text" ng-model="confirm"><br>
+<button ng-click="signup(s_username,s_password,confirm)">Sign Up</button>
+
+</body>
+</html>
