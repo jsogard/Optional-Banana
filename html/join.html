@@ -8,7 +8,7 @@
 <h4>Start Game</h4>
 <button ng-click="start_game()">Create Game!</button>
 <h2> {{lobby.code}} </h2>
-<button ng-click="close_lobby()">Close Lobby</button>
+<button ng-disabled=" lobby.owner !== username " ng-click="close_lobby()">Close Lobby</button>
 
 <h4>Join Game</h4>
 Game Code: <input type="text" ng-focus="true" ng-model="join_code"><br>
@@ -24,6 +24,8 @@ Game Code: <input type="text" ng-focus="true" ng-model="join_code"><br>
 	</tr>
 
 </table>
+
+<button ng-click="debug()"> debug </button>
 
 </body>
 </html>

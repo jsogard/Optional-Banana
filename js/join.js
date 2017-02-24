@@ -1,12 +1,13 @@
 
 mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 
-	var promise = null;
+	var promise = null; // for starting/stopping interval function call
 
+	$scope.username = username;
+
+	// create game
 	$scope.start_game = function(){
 
-		// for debugging
-		var username = "debug";
 
 		$http({
 			method: 'POST',
@@ -24,10 +25,15 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 
 	};
 
+	// join specified game
 	$scope.join_game = function(code){
 
-		// for debugging
-		var username = "debug";
+		if(code == undefined || code.length != 4){
+			console.log("Invalid game code.");
+			return;
+		}
+
+		code = code.toUpperCase();
 
 		$http({
 			method: 'POST',
@@ -39,31 +45,42 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	    }).
 	    success(function(response) {
-	        switch(response){
-				case '_001':
-					console.log("Invalid game code.");
-					break;
-				case '_002':
-					console.log("Unable to join game.");
-					break;
-				case '_003':
-					console.log("Game joined!");
-					$scope.lobby[code] = code;
-					promise = $interval($scope.check_lobby, 500);
-					break;
-			}
-	    }).
-	    error(function(response) {
-	        console.log(response);
-	    });
+	    	switch(response){
+					case '_001':
+						console.log("Invalid game code.");
+						break;
+					case '_002':
+						console.log("Unable to join game.");
+						break;
+					case '_003':
+						console.log("Game joined!");
+						$scope.lobby.code = code;
+						promise = $interval($scope.check_lobby, 500);
+						break;
+					case '_004':
+						console.log('User already in game.');
+						if($scope.lobby.code == ""){
+							$scope.lobby.code = code;
+							promise = $interval($scope.check_lobby, 500);
+						}
+						break;
+					default:
+						console.log(response);
+				}
+		    }).
+		    error(function(response) {
+		        console.log(response);
+		    });
 
 	};
 
 	$scope.lobby = {
 		code: "",
-		users: []
+		users: [],
+		owner: ""
 	};
 
+	// update lobby variable
 	$scope.check_lobby = function(){
 
 		var code = $scope.lobby.code;
@@ -78,6 +95,7 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 	    }).
 	    success(function(response) {
 			$scope.lobby.users = response.users;
+			$scope.lobby.owner = $scope.lobby.users[0];
 			if(response.open === 0){
 				$interval.cancel(promise);
 				console.log('stopping interval');
@@ -110,5 +128,11 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 	    });
 
 	};
+
+	$scope.debug = function(){
+		console.log($scope.lobby);
+		console.log($scope.username);
+		console.log(username);
+	}
 
 });
