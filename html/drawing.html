@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telepictionary!</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1 class="Title">Draw</h1>
+    <h3 id="owner"></h3>
+    <h3 id="name"></h3>
+    <p id="online"></p>
+
+    <form id="tool" action="">
+        <input type="radio" name="tool" value="pencil" checked="checked"> Pencil
+        <input type="radio" name="tool" value="marker"> Marker
+        <input type="radio" name="tool" value="eraser"> Eraser
+    </form>
+    <canvas id="mainCanvas" width="300" height="200"></canvas>
+    <a id="done">Done!</a>
+
+    <script src="../js/drawing.js"></script>
+</body>
+</html>

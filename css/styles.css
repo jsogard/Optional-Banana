@@ -1,0 +1,66 @@
+body{
+    font-family: 'Patrick Hand', cursive;
+	background: #dddddd;
+    user-select: none;
+    text-align: center;
+    min-width: 768px;
+    color: black;
+}
+
+
+#done{
+    display: block;
+    color: black;
+    background-color: aquamarine;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-top: 40px;
+}
+#done:hover{
+    background-color: white;
+}
+
+
+canvas{
+    background-color: #aaa;
+	background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-repeat: repeat;
+	display: block;
+	margin: auto;
+	cursor: crosshair;
+    border-style: groove;
+    width: 600px;
+}
+
+
+/* LOGIN PAGE */
+
+#form {
+    background-color: #fff;
+    padding:30px;
+    padding-top:0;
+    box-shadow: 0 4px 10px 0 #222;
+    border-radius: 20px;
+    margin:auto;
+    width:365px;
+    margin-top:0;
+
+}
+#form div{
+    display: inline-block;
+}
+#break {
+    width:2px;
+    height:190px;
+    background: #c0cdd8;
+    margin: 0 20px 0 20px;
+}
+#hello{
+    margin: 20px;
+}
+input{
+    margin-bottom: 20px;
+}
