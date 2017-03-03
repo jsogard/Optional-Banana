@@ -1,13 +1,14 @@
 
-mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
+mainApp.controller('joinCtrl', function($scope,$http,$location,$interval, Data) {
 
 	var promise = null; // for starting/stopping interval function call
 
-	$scope.username = username;
+	$scope.username = Data.getPlayerData().name;
 
 	// create game
 	$scope.start_game = function(){
 
+		var username = $scope.username;
 
 		$http({
 			method: 'POST',
@@ -16,8 +17,9 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	    }).
 	    success(function(response) {
-	        $scope.lobby.code = response;
-			promise = $interval($scope.check_lobby, 500);
+        $scope.lobby.code = response;
+				Data.setGameCode(response);
+				promise = $interval($scope.check_lobby, 500);
 	    }).
 	    error(function(response) {
 	        console.log(response);
@@ -34,6 +36,7 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 		}
 
 		code = code.toUpperCase();
+		var username = $scope.username;
 
 		$http({
 			method: 'POST',
@@ -55,12 +58,14 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 					case '_003':
 						console.log("Game joined!");
 						$scope.lobby.code = code;
+						Data.setGameCode(code);
 						promise = $interval($scope.check_lobby, 500);
 						break;
 					case '_004':
 						console.log('User already in game.');
 						if($scope.lobby.code == ""){
 							$scope.lobby.code = code;
+							Data.setGameCode(code);
 							promise = $interval($scope.check_lobby, 500);
 						}
 						break;
@@ -99,6 +104,8 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 			if(response.open === 0){
 				$interval.cancel(promise);
 				console.log('stopping interval');
+				Data.setGamePlayerCount($scope.lobby.users.length);
+				Data.setPlayerId($scope.lobby.users.indexOf($scope.username));
 				// reroute to game
 			}
 	    }).
@@ -121,7 +128,9 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	    }).
 	    success(function(response) {
-	        // reroute to game
+				Data.setGamePlayerCount($scope.lobby.users.length);
+				Data.setPlayerId($scope.lobby.users.indexOf($scope.username));
+        // reroute to game
 	    }).
 	    error(function(response) {
 	        console.log(response);
@@ -130,9 +139,9 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval) {
 	};
 
 	$scope.debug = function(){
-		console.log($scope.lobby);
 		console.log($scope.username);
-		console.log(username);
-	}
+		console.log(Data.getGameData());
+		console.log(Data.getPlayerData());
+	};
 
 });

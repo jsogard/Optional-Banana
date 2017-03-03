@@ -1,8 +1,8 @@
 
-mainApp.controller('loginCtrl', function($scope,$http,$location) {
+mainApp.controller('loginCtrl', function($scope,$http,$location, Data) {
 
 	$scope.login = function(uname,password){
-		
+
 		if(uname === ""){
 			console.log("Invalid Username");
 			return;
@@ -26,7 +26,8 @@ mainApp.controller('loginCtrl', function($scope,$http,$location) {
 				switch(response){
 					case '_001':
 						console.log('Login successful');
-						username = uname;
+						Data.setPlayerName(uname);
+						console.log(Data.getPlayerData());
 						$location.url('/join');
 						break;
 					case '_002':
@@ -69,7 +70,7 @@ mainApp.controller('loginCtrl', function($scope,$http,$location) {
 						break;
 					case '_002':
 						console.log('User successfully added');
-						username = uname;
+						Data.setPlayerName(uname);
 						$location.url('/join');
 						break;
 				}
