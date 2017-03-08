@@ -17,10 +17,10 @@
     <h4> {{ turn_info.caption }} </h4>
 
     <canvas drawing width="400px" height="400px" style="border: 1px solid black"></canvas>
-    <a ng-click="changeBrush('pencil')">Pencil</a>
-    <a ng-click="changeBrush('marker')">Marker</a>
-    <a ng-click="changeBrush('eraser')">Eraser</a>
-    <a ng-click="function(){}">Erase All</a>
+    <a ng-click="pencil()">Pencil</a>
+    <a ng-click="marker()">Marker</a>
+    <a ng-click="eraser()">Eraser</a>
+    <a ng-click="erase_all()">Erase All</a>
   </div>
 
   <h5> {{ turn_info.time_left }} </h5>

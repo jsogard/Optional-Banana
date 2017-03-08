@@ -67,7 +67,7 @@ mainApp.factory('Data', function(){
 mainApp.directive("drawing", function(){
   return {
     restrict: "A",
-    link: function(scope, element){
+    link: function($scope, element){
       var ctx = element[0].getContext('2d');
 
       // variable that decides if something should be drawn on mousemove
@@ -77,9 +77,35 @@ mainApp.directive("drawing", function(){
       var lastX;
       var lastY;
 
-			ctx.lineWidth = 5;
+			$scope.erase_all = function(){
+				ctx.rect(0,0,400,400);
+				ctx.fillStyle = "white";
+				ctx.fill();
+			};
+
+			$scope.eraser = function(){
+				ctx.lineWidth = 15;
+				ctx.strokeStyle = "#ffffff";
+				ctx.lineCap = 'round';
+			};
+
+			$scope.pencil = function(){
+				ctx.lineWidth = 5;
+				ctx.strokeStyle = "#000000";
+				ctx.lineCap = 'round';
+			};
+
+			$scope.marker = function(){
+				ctx.lineWidth = 10;
+				ctx.strokeStyle = "#000000";
+				ctx.lineCap = "round";
+			};
+
+			$scope.pencil();
 
       element.bind('mousedown', function(event){
+				console.log($scope.turn_info);
+
         if(event.offsetX!==undefined){
           lastX = event.offsetX;
           lastY = event.offsetY;
@@ -93,6 +119,7 @@ mainApp.directive("drawing", function(){
 
         drawing = true;
       });
+
       element.bind('mousemove', function(event){
         if(drawing){
           // get current mouse position
@@ -127,13 +154,6 @@ mainApp.directive("drawing", function(){
         ctx.moveTo(lX,lY);
         // to
         ctx.lineTo(cX,cY);
-        // color
-				if(erase)
-					ctx.strokeStyle = "#ffffff";
-				else
-	        ctx.strokeStyle = "#000000";
-				// round edges
-				ctx.lineCap = "round";
         // draw it
         ctx.stroke();
       }
