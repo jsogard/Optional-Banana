@@ -3,20 +3,29 @@
 <head>
   <title>Play Game!</title>
 </head>
-<body ng-if=" turn_info.mode == 'caption' ">
+<body>
 
-  <h4>Your drawing is...</h4>
-  <img ng-src="turn_info.fpath" />
+  <div ng-if=" turn_info.mode == 'caption' ">
+    <h4>Your drawing is...</h4>
+    <img ng-src=" {{ turn_info.fpath }} " />
 
-  <input autofocus="true" name="new_caption" />
+    <input autofocus="true" name="new_caption" />
+  </div>
 
-</body>
-<body ng-if=" turn_info.mode == 'draw' ">
+  <div ng-if=" turn_info.mode == 'draw' ">
+    <h4>Your caption is...</h4>
+    <h4> {{ turn_info.caption }} </h4>
 
-  <h4>Your caption is...</h4>
-  <h4> {{ turn_info.caption }} </h4>
+    <canvas drawing width="400px" height="400px" style="border: 1px solid black"></canvas>
+    <a ng-click="changeBrush('pencil')">Pencil</a>
+    <a ng-click="changeBrush('marker')">Marker</a>
+    <a ng-click="changeBrush('eraser')">Eraser</a>
+    <a ng-click="function(){}">Erase All</a>
+  </div>
 
-  <!-- <canvas>...</canvas> -->
+  <h5> {{ turn_info.time_left }} </h5>
+
+  <button ng-click="debug()"> debug </button>
 
 </body>
 </html>

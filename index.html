@@ -8,6 +8,7 @@
 
 <body ng-app = "mainApp">
 
+
 	<div ng-view></div>
 
 	<script type = "text/ng-template" id = "login.html">
@@ -18,10 +19,14 @@
       <ng-include src="'./html/join.html'"></ng-include>
   </script>
 
+	<script type = "text/ng-template" id = "play.html">
+			<ng-include src="'./html/play.html'"></ng-include>
+	</script>
 
   <script src="./js/master.js"></script>
 	<script src="./js/login.js"></script>
 	<script src="./js/join.js"></script>
+	<script src="./js/play.js"></script>
 
 </body>
 </html>

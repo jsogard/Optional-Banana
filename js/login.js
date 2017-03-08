@@ -17,6 +17,7 @@ mainApp.controller('loginCtrl', function($scope,$http,$location, Data) {
 			password:password
 		};
 
+		// TODO convert to angular
 		$.ajax({
 			url: './php/login.php',
 			method: 'POST',
@@ -58,6 +59,7 @@ mainApp.controller('loginCtrl', function($scope,$http,$location, Data) {
 			password:password
 		};
 
+		// TODO convert to angular
 		$.ajax({
 			url: './php/adduser.php',
 			method: 'POST',
