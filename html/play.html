@@ -9,7 +9,7 @@
     <h4>Your drawing is...</h4>
     <img ng-src=" {{ turn_info.fpath }} " />
 
-    <input autofocus="true" name="new_caption" />
+    <input autofocus="true" name="new_caption"/>
   </div>
 
   <div ng-if=" turn_info.mode == 'draw' ">
@@ -21,9 +21,10 @@
     <a ng-click="marker()">Marker</a>
     <a ng-click="eraser()">Eraser</a>
     <a ng-click="erase_all()">Erase All</a>
+    <a ng-click="debug()">Debug</a>
   </div>
 
-  <h5> {{ turn_info.time_left }} </h5>
+  <h5 ng-bind="turn_info.time_left"></h5>
 
   <button ng-click="debug()"> debug </button>
 

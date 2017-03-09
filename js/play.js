@@ -6,6 +6,7 @@ $scope.turn_info = {
   mode: 'draw',
   caption: null,
   fpath: null,
+  png_data: null,
   time_left: 30 // TODO idk how much time to do... if change this change decrement_time()
 }
 
@@ -24,6 +25,12 @@ player_data = {
 };
 */
 
+$scope.fuck = "fuck";
+
+$scope.x_test1 = function(){
+  console.log('x-test #1 successful');
+};
+
 var initialize = function(){
 
   $http({
@@ -38,7 +45,7 @@ var initialize = function(){
 
       //add_turn_data(response);
 
-      //$interval(function(){decrement_time()},1000);
+      $interval(function(){decrement_time()},1000);
     }).
     error(function(response) {
       console.log(response);
@@ -46,19 +53,33 @@ var initialize = function(){
 
 };
 
+$scope.getInterval = function(){return $interval;};
 
 // saves the image drawn to the server
 // called by save()
 var save_image = function(){
+  window.open($scope.turn_info.png_data);
   var fpath = getFilePath();
   // TODO: save image on screen to server at fpath
+  $http({
+    method: 'POST',
+    url: './php/save_png.php',
+    data: {
+      fpath: fpath,
+      data:data
+    },
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).
+    success(function(response) {
+      console.log(response);
+    }).
+    error(function(response) {
+      console.log(response);
+    });
 
   add_turn_data(fpath);
-  /* TODO: send fpath to php to save in play.json
-  *  append to JSON[game_code][chain_no]
-  */
 
-  // TODO disable all functionality
+  // TODO disable all functionality <<Is this necessary??>>
 }
 
 // saves the caption written to the server
@@ -66,9 +87,8 @@ var save_image = function(){
 var save_caption = function(caption){
 
   add_turn_data(caption);
-  // TODO append caption to player.json [game_code][chain_no]
 
-  // TODO disable all functionality
+  // TODO disable all functionality <<Is this necessary??>>
 };
 
 var decrement_time = function(){
@@ -132,7 +152,7 @@ var add_turn_data = function(data){
     });
 };
 
-var get_turn_data = function(){
+var get_turn_data = function(game_mode){
   var chain_no = getChainNumber();
   var data_php = false;
   $http({
@@ -146,21 +166,23 @@ var get_turn_data = function(){
     }).
     success(function(response) {
       console.log(response);
-      data_php = response;
+      switch($scope.turn_info.game_mode){
+        case 'caption':
+          $scope.turn_info.fpath = response;
+          break;
+        case 'draw':
+          $scope.turn_info.caption = response;
+          break;
+      }
     }).
     error(function(response) {
       console.log(response);
     });
 };
 
-$scope.debug = function(){
-  $scope.game_info.num_players = 5;
-  $scope.turn_info.num = 3;
-  $scope.player_info.game_id = 3;
-  $scope.game_info.code = "DBG1";
-  var response = get_turn_data();
-  console.log(response);
-};
+// $scope.debug = function(){
+//
+// };
 
 initialize();
 

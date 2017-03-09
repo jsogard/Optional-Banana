@@ -77,6 +77,21 @@ mainApp.directive("drawing", function(){
       var lastX;
       var lastY;
 
+			$scope.setPNGData = function(){
+				$scope.turn_info.png_data = element[0].toDataURL();
+			};
+
+			$scope.setPNGData();
+
+			$scope.x_test2 = function(){
+				console.log('x-test #2 successful');
+			};
+
+			$scope.debug = function(){
+				conosle.log('poop');
+				//window.open($scope.getDataURL());
+			};
+
 			$scope.erase_all = function(){
 				ctx.rect(0,0,400,400);
 				ctx.fillStyle = "white";
@@ -93,6 +108,7 @@ mainApp.directive("drawing", function(){
 				ctx.lineWidth = 5;
 				ctx.strokeStyle = "#000000";
 				ctx.lineCap = 'round';
+				$scope.x_test1();
 			};
 
 			$scope.marker = function(){
@@ -102,6 +118,7 @@ mainApp.directive("drawing", function(){
 			};
 
 			$scope.pencil();
+			$scope.erase_all();
 
       element.bind('mousedown', function(event){
 				console.log($scope.turn_info);
@@ -136,18 +153,17 @@ mainApp.directive("drawing", function(){
           // set current coordinates to last one
           lastX = currentX;
           lastY = currentY;
-        }
 
+					if($scope.turn_info.time_left == 0)
+						$scope.setPNGData();
+        }
       });
+
       element.bind('mouseup', function(event){
         // stop drawing
         drawing = false;
+				$scope.setPNGData();
       });
-
-      // canvas reset
-      function reset(){
-       element[0].width = element[0].width;
-      }
 
       function draw(lX, lY, cX, cY){
         // line from
