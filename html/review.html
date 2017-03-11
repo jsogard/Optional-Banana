@@ -10,7 +10,7 @@
   <div ng-repeat="chain in data">
     <div ng-repeat="turn in chain">
       <h4 ng-if="turn.type == 'caption'" ng-bind="turn.data"></h4>
-      <img ng-if="turn.type == 'image'" ng-href="turn.data" />
+      <img ng-if="turn.type == 'image'" ng-src="{{turn.data}}" />
       <p ng-if="turn.owner !== null" ng-bind="turn.owner"></p>
     </div>
   </div>
