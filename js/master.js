@@ -24,6 +24,11 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 		controller: 'playCtrl'
 	}).
 
+	when('/review', {
+		templateUrl: 'review.html',
+		controller: 'reviewCtrl'
+	}).
+
 	otherwise({
 		redirectTo: '/login'
 	});
@@ -83,15 +88,6 @@ mainApp.directive("drawing", function(){
 
 			$scope.setPNGData();
 
-			$scope.x_test2 = function(){
-				console.log('x-test #2 successful');
-			};
-
-			$scope.debug = function(){
-				conosle.log('poop');
-				//window.open($scope.getDataURL());
-			};
-
 			$scope.erase_all = function(){
 				ctx.rect(0,0,400,400);
 				ctx.fillStyle = "white";
@@ -108,7 +104,6 @@ mainApp.directive("drawing", function(){
 				ctx.lineWidth = 5;
 				ctx.strokeStyle = "#000000";
 				ctx.lineCap = 'round';
-				$scope.x_test1();
 			};
 
 			$scope.marker = function(){

@@ -1,1 +1,5 @@
-[{"code":"7CS1","open":1,"users":["admin","joe","rob"]},{"code":"6ZHA","open":1,"users":["admin","joe"]},{"code":"223C","open":0,"users":[null,"admin","joe","rob"]}]
+[{
+  "code":"DBG1",
+  "open":0,
+  "users":["dbg0","dbg1","dbg2","dbg3","dbg4"]
+  },{"code":"7CS1","open":1,"users":["admin","joe","rob"]},{"code":"6ZHA","open":1,"users":["admin","joe"]},{"code":"223C","open":0,"users":[null,"admin","joe","rob"]}]

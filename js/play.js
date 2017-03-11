@@ -1,85 +1,55 @@
 
 mainApp.controller('playCtrl', function($scope,$http,$location,$interval,Data) {
 
+var clock_init = 10;
+var promise = null;
+var test = true;
+
+$scope.pause = false;
+$scope.tog_pause = function(){
+  $scope.pause = !$scope.pause;
+};
+
 $scope.turn_info = {
   num: 0,
   mode: 'draw',
   caption: null,
   fpath: null,
   png_data: null,
-  time_left: 30 // TODO idk how much time to do... if change this change decrement_time()
+  time_left: clock_init
 }
 
 $scope.game_info = Data.getGameData();
 
 $scope.player_info = Data.getPlayerData();
 
+$scope.debug = function(){
+  console.log($scope.turn_info);
+};
+
 /* FACTORY ACCESSIBLE INFORMATION
-game_data = {
-  code: null,
-  num_players: null
-};
-player_data = {
-  name: null,
-  game_id: null
-};
+game_data = { code, num_players };
+player_data = { name, game_id };
 */
 
-$scope.fuck = "fuck";
+/* "PRIVATE" HELPER FUNCTIONS */
 
-$scope.x_test1 = function(){
-  console.log('x-test #1 successful');
-};
-
+// game start logic
 var initialize = function(){
-
-  $http({
-    method: 'POST',
-    url: './php/init_caption.php',
-    data: {},
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).
-    success(function(response) {
-      $scope.turn_info.caption = response;
-      // TODO store initial caption in JSON[game_code][game_id][0]
-
-      //add_turn_data(response);
-
-      $interval(function(){decrement_time()},1000);
-    }).
-    error(function(response) {
-      console.log(response);
-    });
-
+  init_caption();
 };
-
-$scope.getInterval = function(){return $interval;};
 
 // saves the image drawn to the server
 // called by save()
 var save_image = function(){
-  window.open($scope.turn_info.png_data);
-  var fpath = getFilePath();
-  // TODO: save image on screen to server at fpath
-  $http({
-    method: 'POST',
-    url: './php/save_png.php',
-    data: {
-      fpath: fpath,
-      data:data
-    },
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).
-    success(function(response) {
-      console.log(response);
-    }).
-    error(function(response) {
-      console.log(response);
-    });
+
+  var fpath = '.' + getFilePath();
+  var data = $scope.turn_info.png_data;
+
+  save_png(fpath, data);
 
   add_turn_data(fpath);
 
-  // TODO disable all functionality <<Is this necessary??>>
 }
 
 // saves the caption written to the server
@@ -91,28 +61,33 @@ var save_caption = function(caption){
   // TODO disable all functionality <<Is this necessary??>>
 };
 
+// decrements the time left and changes turn at 0 seconds
 var decrement_time = function(){
+  if($scope.pause)
+    return;
   $scope.turn_info.time_left -= 1;
   if($scope.turn_info.time_left < 0){
     next_turn();
   }
 };
 
+// executes logic required to go to next turn (or end game)
 var next_turn = function(){
-  $scope.turn_info.time_left = 30;
+  $scope.turn_info.time_left = clock_init;
   $scope.turn_info.num++;
   if($scope.turn_info.num == $scope.game_info.num_players){
     // TODO end game
   }
   if($scope.turn_info.mode == 'draw'){
+    $scope.turn_info.caption = '';
     $scope.turn_info.mode = 'caption';
     save_image();
-    $scope.turn_info.fpath = get_turn_data();//TODO retrieve last string from play.josn JSON[game_code][chain_no]
+    $scope.turn_info.fpath = get_turn_data();
   }
   else{
     $scope.turn_info.mode = 'draw';
     save_caption(caption);
-    $scope.turn_info.caption = get_turn_data();//TODO retrieve last string from play.josn JSON[game_code][chain_no]
+    $scope.turn_info.caption = get_turn_data();
   }
 }
 
@@ -132,6 +107,8 @@ var getFilePath = function(){
 
 /* PHP FUNCTIONS */
 
+// TODO check if broken
+// saves the new caption/fpath from the turn to the database
 var add_turn_data = function(data){
   var chain_no = getChainNumber();
   $http({
@@ -152,6 +129,8 @@ var add_turn_data = function(data){
     });
 };
 
+// TODO check if broken
+// sets the fpath/caption for the new turn
 var get_turn_data = function(game_mode){
   var chain_no = getChainNumber();
   var data_php = false;
@@ -180,9 +159,50 @@ var get_turn_data = function(game_mode){
     });
 };
 
-// $scope.debug = function(){
-//
-// };
+// retrieves a random initial caption from database
+var init_caption = function(){
+  $http({
+    method: 'POST',
+    url: './php/init_caption.php',
+    data: {},
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).
+    success(function(response) {
+      $scope.turn_info.caption = response;
+      // TODO store initial caption in JSON[game_code][game_id][0]
+
+      add_turn_data(response);
+
+      promise = $interval(function(){decrement_time()},1000);
+    }).
+    error(function(response) {
+      console.log(response);
+    });
+
+    if(test){
+      $scope.game_info = {code: 'DBG1', num_players: 5};
+      $scope.player_info = {name: 'debug', game_id: 3};
+    }
+};
+
+// saves png data to the webserver
+var save_png = function(fpath, data){
+  $http({
+    method: 'POST',
+    url: './php/save_png.php',
+    data: {
+      fpath: fpath,
+      data:data
+    },
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).
+    success(function(response) {
+      console.log(response);
+    }).
+    error(function(response) {
+      console.log(response);
+    });
+};
 
 initialize();
 
