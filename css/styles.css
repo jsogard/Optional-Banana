@@ -38,6 +38,10 @@ canvas{
 
 /* LOGIN PAGE */
 
+table{
+    margin: auto;
+}
+
 #form {
     background-color: #fff;
     padding:30px;
