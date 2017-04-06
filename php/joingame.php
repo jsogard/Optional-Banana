@@ -32,7 +32,7 @@ foreach ($jsondata as $index => $game) {
 		if($game->open == 1){
 			array_push($game->users, $username);
 
-			$jsondata = json_encode($jsondata);
+			$jsondata = json_encode($jsondata, JSON_PRETTY_PRINT);
 			file_put_contents('./../data/games.json', $jsondata);
 
 			echo '_003';

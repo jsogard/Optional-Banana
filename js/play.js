@@ -1,7 +1,7 @@
 
 mainApp.controller('playCtrl', function($scope,$http,$location,$interval,Data) {
 
-var clock_init = 10;
+var clock_init = 30;
 var promise = null;
 var test = true;
 
@@ -22,6 +22,11 @@ $scope.turn_info = {
 $scope.game_info = Data.getGameData();
 
 $scope.player_info = Data.getPlayerData();
+
+$scope.done = function(){
+  if($scope.game_info.num_players == 1)
+    next_turn();
+}
 
 $scope.debug = function(){
   console.log($scope.turn_info);
@@ -75,19 +80,20 @@ var decrement_time = function(){
 var next_turn = function(){
   $scope.turn_info.time_left = clock_init;
   $scope.turn_info.num++;
-  if($scope.turn_info.num == $scope.game_info.num_players){
-    // TODO end game
+  if($scope.game_info.num_players == 1 /*&& $scope.turn_info.num < 4 */){}
+  else if($scope.turn_info.num >= $scope.game_info.num_players){
+    $location.url('/review');
   }
   if($scope.turn_info.mode == 'draw'){
     $scope.turn_info.caption = '';
     $scope.turn_info.mode = 'caption';
     save_image();
-    $scope.turn_info.fpath = get_turn_data();
+    get_turn_data();
   }
   else{
     $scope.turn_info.mode = 'draw';
-    save_caption(caption);
-    $scope.turn_info.caption = get_turn_data();
+    save_caption($scope.turn_info.caption);
+    get_turn_data();
   }
 }
 
@@ -132,6 +138,27 @@ var add_turn_data = function(data){
 // TODO check if broken
 // sets the fpath/caption for the new turn
 var get_turn_data = function(game_mode){
+  if($scope.game_info.num_players == 1){
+    switch($scope.turn_info.mode){
+        case 'caption':
+          $scope.turn_info.fpath = './img/stock' + Math.floor(Math.random() * 7 + 1) + '.jpg';
+          console.log($scope.turn_info.fpath + "\n fpath <--");
+          break;
+        case 'draw':
+          caps = ['turtle with glasses'
+                    ,'angry cheezit'
+                    ,'lofti ben'
+                    ,'underwater sombrero'
+                    ,'so many fish'];
+          $scope.turn_info.caption = caps[Math.floor(Math.random() * caps.length)];
+          console.log($scope.turn_info.caption);
+          break;
+        default:
+          console.log('problem');
+          console.log($scope.turn_info);
+      }
+      return;
+  }
   var chain_no = getChainNumber();
   var data_php = false;
   $http({
@@ -178,11 +205,6 @@ var init_caption = function(){
     error(function(response) {
       console.log(response);
     });
-
-    if(test){
-      $scope.game_info = {code: 'DBG1', num_players: 5};
-      $scope.player_info = {name: 'debug', game_id: 3};
-    }
 };
 
 // saves png data to the webserver

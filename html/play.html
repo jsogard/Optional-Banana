@@ -7,27 +7,26 @@
 
   <div ng-if=" turn_info.mode == 'caption' ">
     <h4>Your drawing is...</h4>
-    <img ng-src=" {{ turn_info.fpath }} " />
+    <img ng-src="{{turn_info.fpath}}" />
 
-    <input ng-focus="true" ng-model="turn_info.caption"/>
+    <input ng-focus="true"/>
   </div>
 
   <div ng-if=" turn_info.mode == 'draw' ">
     <h4>Your caption is...</h4>
-    <h4> {{ turn_info.caption }} </h4>
+    <h4 > {{ turn_info.caption }} </h4>
 
-    <canvas drawing width="400px" height="400px" style="border: 1px solid black"></canvas>
+    <canvas drawing width="600px" height="600px" style="border: 1px solid black"></canvas>
     <a ng-click="pencil()">Pencil</a>
     <a ng-click="marker()">Marker</a>
     <a ng-click="eraser()">Eraser</a>
     <a ng-click="erase_all()">Erase All</a>
   </div>
 
-  <a ng-click="tog_pause()">Pause</a>
+  <button ng-click="done()"> Done </button>
+  <button ng-click="debug()"> Debug </button>
 
   <h5 ng-bind="turn_info.time_left"></h5>
-
-  <button ng-click="debug()"> debug </button>
 
 </body>
 </html>

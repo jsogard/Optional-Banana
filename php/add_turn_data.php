@@ -11,7 +11,7 @@ $data = $post->data;
 
 $json = json_decode(file_get_contents('./../data/play.json'));
 array_push($json->$code->$chain, $data);
-file_put_contents('./../data/play.json', json_encode($json));
+file_put_contents('./../data/play.json', json_encode($json, JSON_PRETTY_PRINT));
 
 
 

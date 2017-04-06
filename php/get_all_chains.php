@@ -52,6 +52,6 @@ foreach ($chain_data as $chain_i => $chain) {
   array_push($out,$out_chain);
 }
 
-echo json_encode($out);
+echo json_encode($out, JSON_PRETTY_PRINT);
 
  ?>

@@ -1,9 +1,8 @@
 <?php
 
-$post = json_decode(file_get_contents("php://input"));
+$obj = ["one" => 1, "two" => ["a", "b"], "three" => ["tomato" => "red", "orange" => "orange"]];
 
-
-echo $post->data;
+file_put_contents("./../data/ready.json", json_encode($obj, JSON_PRETTY_PRINT));
 
 
 ?>

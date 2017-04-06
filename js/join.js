@@ -25,6 +25,8 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval, Data) 
 	        console.log(response);
 	    });
 
+	    
+
 	};
 
 	// join specified game
@@ -106,7 +108,7 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval, Data) 
 				console.log('stopping interval');
 				Data.setGamePlayerCount($scope.lobby.users.length);
 				Data.setPlayerId($scope.lobby.users.indexOf($scope.username));
-				// reroute to game
+				$location.url('/play');
 			}
 	    }).
 	    error(function(response) {
@@ -130,7 +132,7 @@ mainApp.controller('joinCtrl', function($scope,$http,$location,$interval, Data) 
 	    success(function(response) {
 				Data.setGamePlayerCount($scope.lobby.users.length);
 				Data.setPlayerId($scope.lobby.users.indexOf($scope.username));
-        // reroute to game
+        		$location.url('/play');
 	    }).
 	    error(function(response) {
 	        console.log(response);

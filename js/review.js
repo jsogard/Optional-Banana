@@ -32,7 +32,7 @@ var get_all_chains = function(){
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).
     success(function(response) {
-      //console.log(response);
+      console.log(response);
       $scope.data = angular.fromJson(response);
       console.log($scope.data);
     }).

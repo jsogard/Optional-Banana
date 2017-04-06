@@ -89,7 +89,7 @@ mainApp.directive("drawing", function(){
 			$scope.setPNGData();
 
 			$scope.erase_all = function(){
-				ctx.rect(0,0,400,400);
+				ctx.rect(0,0,600,600);
 				ctx.fillStyle = "white";
 				ctx.fill();
 			};
@@ -116,7 +116,7 @@ mainApp.directive("drawing", function(){
 			$scope.erase_all();
 
       element.bind('mousedown', function(event){
-				console.log($scope.turn_info);
+				
 
         if(event.offsetX!==undefined){
           lastX = event.offsetX;
@@ -125,7 +125,7 @@ mainApp.directive("drawing", function(){
           lastX = event.layerX - event.currentTarget.offsetLeft;
           lastY = event.layerY - event.currentTarget.offsetTop;
         }
-
+        console.log("(" + lastX + ", " + lastY + ")");
         // begins new line
         ctx.beginPath();
 

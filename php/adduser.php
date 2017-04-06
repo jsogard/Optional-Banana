@@ -22,7 +22,7 @@ foreach ($jsondata as $index => $user) {
 
 array_push($jsondata, ["md5" => $md5, "username" => $username]);
 
-$jsondata = json_encode($jsondata);
+$jsondata = json_encode($jsondata, JSON_PRETTY_PRINT);
 file_put_contents('./../data/users.json', $jsondata);
 
 echo '_002';

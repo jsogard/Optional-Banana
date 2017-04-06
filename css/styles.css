@@ -21,7 +21,7 @@ body{
     background-color: white;
 }
 
-
+/*****
 canvas{
     background-color: #aaa;
 	background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
@@ -33,6 +33,12 @@ canvas{
 	cursor: crosshair;
     border-style: groove;
     width: 600px;
+}
+*****/
+
+canvas{
+    display:block;
+    margin: auto;
 }
 
 
@@ -63,4 +69,30 @@ canvas{
 }
 input{
     margin-bottom: 20px;
+}
+
+table {
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+td, th{
+    border: 1px solid black;
+}
+
+img {
+    max-height: 600px;
+}
+
+.review{
+    display: flex;
+}
+
+.review > div{
+    max-width:600px;
+    display:block;
+    margin:10px;
+
 }

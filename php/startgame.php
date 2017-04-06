@@ -26,9 +26,9 @@ while(!$valid){
 	}
 }
 
-array_push($jsondata, ["code" => $code, "open" => 1, "users" => [$username]]);
+array_push($jsondata, ["code" => $code, "open" => 1, "users" => [$username], "ready" => 0]);
 
-$jsondata = json_encode($jsondata);
+$jsondata = json_encode($jsondata, JSON_PRETTY_PRINT);
 file_put_contents('./../data/games.json', $jsondata);
 
 echo $code;

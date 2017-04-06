@@ -12,7 +12,7 @@ $jsondata = json_decode($filecontents);
 
 foreach ($jsondata as $index => $game) {
 	if($game->code == $code){
-		$output = json_encode($game);
+		$output = json_encode($game, JSON_PRETTY_PRINT);
 		echo $output;
 		exit();
 	}
