@@ -2,7 +2,7 @@
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$md5 = md5($password);
+$sha1 = sha1($password);
 
 /* MADE FOR JSON MANIPULATION */
 
@@ -20,7 +20,7 @@ foreach ($jsondata as $index => $user) {
 
 /* INSERT USER */
 
-array_push($jsondata, ["md5" => $md5, "username" => $username]);
+array_push($jsondata, ["sha1" => $sha1, "username" => $username]);
 
 $jsondata = json_encode($jsondata, JSON_PRETTY_PRINT);
 file_put_contents('./../data/users.json', $jsondata);

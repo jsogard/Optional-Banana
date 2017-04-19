@@ -112,6 +112,23 @@ mainApp.directive("drawing", function(){
 				ctx.lineCap = "round";
 			};
 
+			$scope.color = function(color){
+				switch(color){
+					case 'red':
+						ctx.strokeStyle = '#FF0000';
+						break;
+					case 'yellow':
+						ctx.strokeStyle = '#FFFF00';
+						break;
+					case 'black':
+						ctx.strokeStyle = '#000000';
+						break;
+					case 'blue':
+						ctx.strokeStyle = '#0000FF';
+						break;
+				}
+			};
+
 			$scope.pencil();
 			$scope.erase_all();
 

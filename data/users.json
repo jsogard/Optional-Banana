@@ -1,38 +1,42 @@
 [
     {
-        "md5": "21232f297a57a5a743894a0e4a801fc3",
+        "sha1": "21232f297a57a5a740fc2140a3894a0e4a801fc3",
         "username": "admin"
     },
     {
-        "md5": "8ff32489f92f33416694be8fdc2d4c22",
+        "sha1": "8ff32489f92f30fc2140a3416694be8fdc2d4c22",
         "username": "joe"
     },
     {
-        "md5": "760061f6bfde75c29af12f252d4d3345",
+        "sha1": "760061f6bfde75c29af10fc2140a2f252d4d3345",
         "username": "rob"
     },
     {
-        "md5": "fd82c1aad2adbf5869c6068bcbf96cd4",
+        "sha1": "fd82c0fc2140a1aad2adbf5869c6068bcbf96cd4",
         "username": "rob1"
     },
     {
-        "md5": "fbae31a60491002925cd552961a17843",
+        "sha1": "fba0fc2140ae31a60491002925cd552961a17843",
         "username": "imjoey"
     },
     {
-        "md5": "757760bf2b021b05a5a57c01dddca962",
+        "sha1": "757760bf2b021b05a5a57c00fc2140a1dddca962",
         "username": "lastone"
     },
     {
-        "md5": "c84258e9c39059a89ab77d846ddab909",
+        "sha1": "c84258e9c3900fc2140a59a89ab77d846ddab909",
         "username": "admin2"
     },
     {
-        "md5": "4337fb150cbc24bd1842fb3b8f828a6c",
+        "sha1": "4337fb150cbc24bd1842fb3b8f8280fc2140aa6c",
         "username": "jess"
     },
     {
-        "md5": "202cb962ac59075b964b07152d234b70",
+        "sha1": "202cb962ac59075b9640fc2140ab07152d234b70",
         "username": "demo_user"
+    },
+    {
+        "sha1": "d033e22ae348aeb5660fc2140aec35850c4da997",
+        "username": "superadmin"
     }
 ]

@@ -17,10 +17,14 @@
     <h4 > {{ turn_info.caption }} </h4>
 
     <canvas drawing width="600px" height="600px" style="border: 1px solid black"></canvas>
-    <a ng-click="pencil()">Pencil</a>
-    <a ng-click="marker()">Marker</a>
-    <a ng-click="eraser()">Eraser</a>
-    <a ng-click="erase_all()">Erase All</a>
+    <button ng-click="pencil()">Pencil</button>
+    <button ng-click="marker()">Marker</button>
+    <button ng-click="eraser()">Eraser</button>
+    <button ng-click="erase_all()">Erase All</button><br>
+    <button ng-click="color('red')">Red</button>
+    <button ng-click="color('blue')">Blue</button>
+    <button ng-click="color('black')">Black</button>
+    <button ng-click="color('yellow')">Yellow</button>
   </div>
 
   <button ng-click="done()"> Done </button>

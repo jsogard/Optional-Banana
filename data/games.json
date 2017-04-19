@@ -410,5 +410,29 @@
             "demo_user"
         ],
         "ready": 0
+    },
+    {
+        "code": "2YF2",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "RGES",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "0VF9",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
     }
 ]

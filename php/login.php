@@ -2,7 +2,7 @@
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$md5 = md5($password);
+$sha1 = sha1($password);
 
 /* MADE FOR JSON MANIPULATION */
 
@@ -12,7 +12,7 @@ $jsondata = json_decode($filecontents);
 /* CHECK FOR EXISTING USER */
 
 foreach ($jsondata as $index => $user) {
-	if($user->username == $username && $user->md5 == $md5){
+	if($user->username == $username && $user->sha1 == $sha1){
 		echo '_001';
 		exit();
 	}
