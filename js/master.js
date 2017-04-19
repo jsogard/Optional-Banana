@@ -102,13 +102,13 @@ mainApp.directive("drawing", function(){
 
 			$scope.pencil = function(){
 				ctx.lineWidth = 5;
-				ctx.strokeStyle = "#000000";
+				//ctx.strokeStyle = "#000000";
 				ctx.lineCap = 'round';
 			};
 
 			$scope.marker = function(){
 				ctx.lineWidth = 10;
-				ctx.strokeStyle = "#000000";
+				//ctx.strokeStyle = "#000000";
 				ctx.lineCap = "round";
 			};
 
@@ -131,6 +131,7 @@ mainApp.directive("drawing", function(){
 
 			$scope.pencil();
 			$scope.erase_all();
+			$scope.color('black');
 
       element.bind('mousedown', function(event){
 				
