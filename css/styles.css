@@ -84,6 +84,8 @@ td, th{
 
 img {
     max-height: 600px;
+	display: block;
+	margin:auto;
 }
 
 .review{
@@ -96,3 +98,4 @@ img {
     margin:10px;
 
 }
+

@@ -290,5 +290,125 @@
             "admin"
         ],
         "ready": 0
+    },
+    {
+        "code": "E7NU",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "8SEF",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "01GZ",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "H9Y8",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "D6PB",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "GKIS",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "6J0S",
+        "open": 1,
+        "users": [
+            "jess"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "AT4P",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "S9VS",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "R9UG",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "XYHF",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "UAUD",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "ST9E",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "EPBA",
+        "open": 0,
+        "users": [
+            "admin"
+        ],
+        "ready": 0
+    },
+    {
+        "code": "NSTG",
+        "open": 0,
+        "users": [
+            "demo_user"
+        ],
+        "ready": 0
     }
 ]

@@ -141,7 +141,15 @@ var get_turn_data = function(game_mode){
   if($scope.game_info.num_players == 1){
     switch($scope.turn_info.mode){
         case 'caption':
-          $scope.turn_info.fpath = './img/stock' + Math.floor(Math.random() * 7 + 1) + '.jpg';
+		paths = [
+			'TZQ1_15_0.png',
+			'TZQ1_25_0.png',
+			'TZQ1_17_0.png',
+			'TZQ1_13_0.png',
+			'TZQ1_21_0.png',
+			'TZQ1_7_0.png'
+			];
+          $scope.turn_info.fpath = './img/' + paths[Math.floor(Math.random() * paths.length) ];
           console.log($scope.turn_info.fpath + "\n fpath <--");
           break;
         case 'draw':
